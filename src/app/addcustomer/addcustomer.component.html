@@ -1,0 +1,41 @@
+<div class="container">
+        <form #custForm="ngForm" (ngSubmit)="add()" class="was-validated">
+        
+            <div class="form-group">
+                CustomerId:<input type="number" name="cid" id="cid" [(ngModel)]="cust.id" #custid="ngModel" class="form-control" required pattern="[0-9]{3,}">
+                
+                <span class="invalid-feedback" *ngIf=" custid.errors?.required && custid.touched " > Customer id required</span>
+                <span class="alert alert-danger" *ngIf=" custid.errors?.pattern && custid.dirty" > It should be 3 digits</span>
+                
+            </div> 
+            
+            <div class="form-group">
+                    Name:<input type="text" name="cname" id="cname" [(ngModel)]="cust.name" #custname="ngModel" class="form-control" required pattern="[A-Z]{1}[a-z]{2,}">
+                    
+                    <span class="invalid-feedback" *ngIf=" custname.errors?.required && custname.touched " > Customer name required</span>
+                    <span class="alert alert-danger" *ngIf=" custname.errors?.pattern && custname.touched" > 1st letter should be Capital</span>
+                    
+            </div>
+            
+            <div class="form-group">
+                    Email:<input type="email" name="cemail" id="cemail" [(ngModel)]="cust.email" #custemail="ngModel" class="form-control" required email>
+                    
+                    <span class="invalid-feedback" *ngIf=" custemail.errors?.required && custemail.touched " > Customer email required</span>
+                    <span class="alert alert-danger" *ngIf=" custemail.errors?.email && custemail.touched" > Email Invalid</span>
+                    
+            </div>
+            
+            <div class="form-group">
+                    PhoneNo:<input type="number" name="cphone" id="cphone" [(ngModel)]="cust.phone" #custphone="ngModel" class="form-control" required pattern="[0-9]{10}">
+                    
+                    <span class="invalid-feedback" *ngIf=" custphone.errors?.required && custphone.touched " > Customer phone no required</span>
+                    <span class="alert alert-danger" *ngIf=" custphone.errors?.pattern && custphone.touched" > It should be 10 digits</span>
+                    
+            </div> 
+        
+            
+            <button class="btn btn-primary" type="submit" [disabled]="custForm.invalid" > Save</button>
+        {{custForm.value | json}}
+        </form>
+        </div>
+        

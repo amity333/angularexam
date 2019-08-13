@@ -1,0 +1,42 @@
+<div class="container">
+     
+    <form [formGroup]="custForm" (ngSubmit)="add()" class="was-validated">
+
+        <div>
+            Id<input type="text" class="form-control" formControlName="id" required pattern="[0-9]{3,}">
+
+            <span class="invalid-feedback" *ngIf="custForm.controls.id.touched && custForm.controls.id.errors"> </span>
+            <span  *ngIf="custForm.controls.id.errors?.required"> Id is required</span>
+            <span  *ngIf="custForm.controls.id.errors?.pattern"> Enter 3 digit no.</span>
+        </div>
+
+        <div>
+                Name<input type="text" class="form-control" formControlName="name" required pattern="[A-Z]{1}[a-z]{2,}">
+    
+                <span class="invalid-feedback" *ngIf="custForm.controls.name.touched && custForm.controls.name.errors"> </span>
+                <span  *ngIf="custForm.controls.name.errors?.required"> Name is required</span>
+                <span *ngIf="custForm.controls.name.errors?.pattern">First letter should be capital</span>
+         </div>
+
+         <div>
+                Email<input type="text" class="form-control" formControlName="email" required email>
+    
+                <span class="invalid-feedback" *ngIf="custForm.controls.id.touched && custForm.controls.email.errors"> </span>
+                <span  *ngIf="custForm.controls.email.errors?.required"> email is required</span>
+                <span  *ngIf="custForm.controls.email.errors?.email"> Email invalid</span>
+        </div>
+
+        <div>
+                Phone<input type="text" class="form-control" formControlName="phone" required pattern="[0-9]{10}">
+    
+                <span class="invalid-feedback" *ngIf="custForm.controls.phone.touched && custForm.controls.phone.errors"> </span>
+                <span  *ngIf="custForm.controls.phone.errors?.required"> Phone is required</span>
+                <span  *ngIf="custForm.controls.phone.errors?.pattern"> Enter 10 digit no.</span>
+        </div>
+
+        <button class="btn btn-primary" type="submit" [disabled]="custForm.invalid" > Save</button>
+        <br><br>
+        {{custForm.value | json}}
+    </form>
+    <h3>Form status:{{ status }}</h3>
+</div>
